@@ -34,7 +34,7 @@ public static class AuthenticationConfiguration
 
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    ValidateIssuer = true,
+                    ValidateIssuer = false,
                     ValidIssuer = jwtSetting.Authority,
                     ValidateAudience = false,
                     ValidateLifetime = true
