@@ -1,4 +1,5 @@
 using System.Security.Claims;
+using System.Text.Json;
 using Handler.WebApi.Settings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -44,17 +45,27 @@ public static class AuthenticationConfiguration
                     OnTokenValidated = context =>
                     {
                         var claimsIdentity = context.Principal?.Identity as ClaimsIdentity;
+                        if (claimsIdentity == null) return Task.CompletedTask;
 
-                        var scopesClaim = claimsIdentity?.FindAll("scopes");
-
-                        if (scopesClaim == null)
+                        // Extract realm_access.roles from the token
+                        var realmAccessClaim = claimsIdentity.FindFirst("realm_access");
+                        if (realmAccessClaim != null && !string.IsNullOrWhiteSpace(realmAccessClaim.Value))
                         {
-                            return Task.CompletedTask;
-                        }
-
-                        foreach (var role in scopesClaim.ToList())
-                        {
-                            claimsIdentity?.AddClaim(new Claim(ClaimTypes.Role, role.Value.Trim()));
+                            try
+                            {
+                                using var jsonDoc = JsonDocument.Parse(realmAccessClaim.Value);
+                                if (jsonDoc.RootElement.TryGetProperty("roles", out var rolesElement) && rolesElement.ValueKind == JsonValueKind.Array)
+                                {
+                                    foreach (var role in rolesElement.EnumerateArray())
+                                    {
+                                        claimsIdentity.AddClaim(new Claim(ClaimTypes.Role, role.GetString() ?? string.Empty));
+                                    }
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                Console.WriteLine($"Failed to parse realm_access.roles: {ex.Message}");
+                            }
                         }
 
                         return Task.CompletedTask;

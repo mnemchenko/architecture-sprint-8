@@ -6,7 +6,7 @@ namespace Handler.WebApi.Features.GetReport;
 
 public class GetReportController : ControllerBase
 {
-    [Authorize]
+    [Authorize(Roles = "prothetic_user")]
     [HttpGet("reports")]
     public Task<IActionResult> GetReport(CancellationToken cancellationToken)
     {
