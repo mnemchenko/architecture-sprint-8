@@ -1,10 +1,12 @@
 using System.Text.Json;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Handler.WebApi.Features.GetReport;
 
 public class GetReportController : ControllerBase
 {
+    [Authorize]
     [HttpGet("reports")]
     public Task<IActionResult> GetReport(CancellationToken cancellationToken)
     {

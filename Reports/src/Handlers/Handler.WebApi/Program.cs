@@ -33,6 +33,8 @@ builder.Services.ConfigureMvc();
 
 builder.Services.ConfigureSwagger();
 
+builder.Services.ConfigureAuthentication(builder.Configuration);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
