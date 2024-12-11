@@ -1,0 +1,11 @@
+bin/
+!.cdk/bin
+obj/
+/packages/
+riderModule.iml
+/_ReSharper.Caches/
+Reports.sln.DotSettings.user
+.idea
+tests/**/TestResults
+Cobertura.xml
+.DS_Store
