@@ -1,0 +1,24 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C57D86DF-1CDE-485C-864A-7972FF838201}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Handlers", "Handlers", "{03EB16DF-AAD9-430F-880B-B01040964FE2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Handler.WebApi", "src\Handlers\Handler.WebApi\Handler.WebApi.csproj", "{5D8E96E2-3E7F-4C43-AB5F-7D4229121B7C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03EB16DF-AAD9-430F-880B-B01040964FE2} = {C57D86DF-1CDE-485C-864A-7972FF838201}
+		{5D8E96E2-3E7F-4C43-AB5F-7D4229121B7C} = {03EB16DF-AAD9-430F-880B-B01040964FE2}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5D8E96E2-3E7F-4C43-AB5F-7D4229121B7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D8E96E2-3E7F-4C43-AB5F-7D4229121B7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D8E96E2-3E7F-4C43-AB5F-7D4229121B7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D8E96E2-3E7F-4C43-AB5F-7D4229121B7C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
